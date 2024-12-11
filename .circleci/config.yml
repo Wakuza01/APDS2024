@@ -22,7 +22,8 @@ jobs:
           name: "Say hello"
           command: "echo Hello, World!"
 
-            working_directory: ~/build
+sonarqube:
+    working_directory: ~/build
     docker:
       - image: sonarsource/sonar-scanner-cli
     resource_class: small
@@ -42,7 +43,7 @@ jobs:
           -Dsonar.login="$SONAR_TOKEN" \
           -Dsonar.branch.name="$SONAR_BRANCH" \
           -Dsonar.sources="."
-
+          
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
 workflows:
