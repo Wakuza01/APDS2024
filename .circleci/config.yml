@@ -12,15 +12,12 @@ jobs:
           name: "Say hello"
           command: "echo Hello, World!"
 
-  sonarqube:
+sonarqube:
     working_directory: ~/build
     docker:
       - image: sonarsource/sonar-scanner-cli
     resource_class: small
     steps:
-      - run:
-          name: "Install findutils"
-          command: apt-get update && apt-get install -y findutils
       - run: find .
       - attach_workspace:
           at: ~/workspace
@@ -36,7 +33,6 @@ jobs:
           -Dsonar.login="$SONAR_TOKEN" \
           -Dsonar.branch.name="$SONAR_BRANCH" \
           -Dsonar.sources="."
-
 # Define workflows
 workflows:
   say-hello-workflow:
